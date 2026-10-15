@@ -54,9 +54,12 @@ Twelve automated comparison tests cover expected matching, capitalization, apost
 
 `scripts/make-samples.py` reproduces the fictional test images (requires Pillow). `scripts/check-ocr.cjs` reproduces OCR validation after running `npm install --no-save tesseract.js@6.0.1 @tesseract.js-data/eng@1.0.0` in this checkout, then `node scripts/check-ocr.cjs`. Sample artwork is generated programmatically for precise, readable typography.
 
-## Submission checklist
+## Submission links
 
-The assignment asks for a source repository and a reviewer-accessible deployed URL. The downloadable source ZIP is ready to upload to a GitHub repository. The initial Sites deployment is owner-private; adjust its access or deploy the `dist` folder to a reviewer-accessible host before sending the application link. Verify both links from an account with the intended reviewer permissions. Do not submit the assignment's instructions repository URL as your own source repository.
+- Source repository: https://github.com/taylormarienye/Treasury-take-home
+- Public deployed prototype: https://labellens-verification.prettygiant256.chatgpt.site
+
+The repository includes the application, self-hosted OCR dependencies, sample labels, tests, and setup documentation. The deployed application is public; no API key is needed to try it. A packaged source copy is available at `dist/downloads/labellens-source.zip`.
 
 ## References and licenses
 
