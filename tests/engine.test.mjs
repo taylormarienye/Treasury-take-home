@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {WARNING,SAMPLE,compare,parseABV,volumes,validateApplication} from '../dist/engine.js';
+const text=`OLD TOM DISTILLERY\nKentucky Straight Bourbon Whiskey\n45% Alc./Vol. (90 Proof) 750 mL\nBottled by Old Tom Distillery\nLouisville, Kentucky\n${WARNING}`;
+test('matching label text still requires visual typography review',()=>{const r=compare(text,SAMPLE);assert.equal(r.needsReview,0);assert.equal(r.rows.find(r=>r.key==='format').status,'manual');});
+test('brand case and smart apostrophes are normalized',()=>{const a={...SAMPLE,brand:"Stone's Throw"};assert.equal(compare(text.replace('OLD TOM DISTILLERY','STONE’S THROW'),a).rows[0].status,'match');});
+test('wrong ABV is flagged, not confused with proof or numbers in warning',()=>{assert.equal(compare(text.replace('45%','40%'),SAMPLE).rows.find(r=>r.key==='abv').status,'review');assert.deepEqual(parseABV('90 Proof 750 mL (1) (2)'),[]);});
+test('word boundaries prevent partial brand matches',()=>{assert.equal(compare('STONEWORKS',{...SAMPLE,brand:'STONE'}).rows[0].status,'review');});
+test('volume units convert before comparison',()=>{assert.equal(compare(text.replace('750 mL','0.75 L'),SAMPLE).rows.find(r=>r.key==='net').status,'match');assert.equal(volumes('1 L')[0],1000);});
+test('warning heading capitalization is checked separately',()=>{const r=compare(text.replace('GOVERNMENT WARNING:','Government Warning:'),SAMPLE);assert.equal(r.rows.find(r=>r.key==='warning').status,'match');assert.equal(r.rows.find(r=>r.key==='caps').status,'review');});
+test('altered warning words and punctuation are flagged',()=>{for(const t of [text.replace('birth defects','birth issues'),text.replace('machinery,','machinery')]) assert.equal(compare(t,SAMPLE).rows.find(r=>r.key==='warning').status,'review');});
+test('warning whitespace is harmless',()=>{assert.equal(compare(text.replaceAll(' ','\n'),SAMPLE).rows.find(r=>r.key==='warning').status,'match');});
+test('missing warning and poor OCR are flagged',()=>{const r=compare('OLD TOM DISTILLERY',SAMPLE,45);assert.ok(r.needsReview>0);assert.equal(r.rows.find(r=>r.key==='confidence').status,'review');});
+test('imported product requires an origin; domestic does not',()=>{assert.equal(validateApplication(SAMPLE).length,0);assert.ok(validateApplication({...SAMPLE,imported:true}).some(s=>s.includes('origin')));assert.equal(compare(text,{...SAMPLE,imported:true,origin:'France'}).rows.find(r=>r.key==='origin').status,'review');});
+test('invalid application values fail validation',()=>{for(const abv of ['-1','101','bad'])assert.ok(validateApplication({...SAMPLE,abv}).length);assert.ok(validateApplication({...SAMPLE,net:'750'}).length);});
+test('unsupplied alcohol content is never automatically accepted',()=>{assert.equal(compare(text,{...SAMPLE,abv:''}).rows.find(r=>r.key==='abv').status,'review');});
