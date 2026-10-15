@@ -1,0 +1,35 @@
+[
+  {
+    "filename": "old-tom.png",
+    "brand": "OLD TOM DISTILLERY",
+    "type": "Kentucky Straight Bourbon Whiskey",
+    "abv": "45",
+    "net": "750 mL",
+    "producer": "Old Tom Distillery",
+    "address": "Louisville, Kentucky",
+    "origin": "",
+    "imported": false
+  },
+  {
+    "filename": "wrong-abv.png",
+    "brand": "OLD TOM DISTILLERY",
+    "type": "Kentucky Straight Bourbon Whiskey",
+    "abv": "45",
+    "net": "750 mL",
+    "producer": "Old Tom Distillery",
+    "address": "Louisville, Kentucky",
+    "origin": "",
+    "imported": false
+  },
+  {
+    "filename": "warning-case.png",
+    "brand": "OLD TOM DISTILLERY",
+    "type": "Kentucky Straight Bourbon Whiskey",
+    "abv": "45",
+    "net": "750 mL",
+    "producer": "Old Tom Distillery",
+    "address": "Louisville, Kentucky",
+    "origin": "",
+    "imported": false
+  }
+]
