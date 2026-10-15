@@ -1,0 +1,30 @@
+{
+  "initializationSeconds": 0.235689773,
+  "reports": [
+    {
+      "file": "old-tom.png",
+      "seconds": 0.789457663,
+      "confidence": 95,
+      "review": [],
+      "text": "Kentucky Straight Bourbon Whiskey\n45% Alc./Vol. (90 Proof)\n750 mL\nBottled by Old Tom Distillery\nLouisville, Kentucky\nGOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink\nalcoholic beverages during pregnancy because of the risk of birth\ndefects. (2) Consumption of alcoholic beverages impairs your ability\nto drive a car or operate machinery, and may cause health problems.\nFICTIONAL SAMPLE LABEL - FOR PROTOTYPE TESTING ONLY\n"
+    },
+    {
+      "file": "wrong-abv.png",
+      "seconds": 0.6945413100000001,
+      "confidence": 95,
+      "review": [
+        "abv"
+      ],
+      "text": "Kentucky Straight Bourbon Whiskey\n40% Alc./Vol. (90 Proof)\n750 mL\nBottled by Old Tom Distillery\nLouisville, Kentucky\nGOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink\nalcoholic beverages during pregnancy because of the risk of birth\ndefects. (2) Consumption of alcoholic beverages impairs your ability\nto drive a car or operate machinery, and may cause health problems.\nFICTIONAL SAMPLE LABEL - FOR PROTOTYPE TESTING ONLY\n"
+    },
+    {
+      "file": "warning-case.png",
+      "seconds": 0.6879481390000001,
+      "confidence": 95,
+      "review": [
+        "caps"
+      ],
+      "text": "Kentucky Straight Bourbon Whiskey\n45% Alc./Vol. (90 Proof)\n750 mL\nBottled by Old Tom Distillery\nLouisville, Kentucky\nGovernment Warning:\n(1) According to the Surgeon General, women should not drink\nalcoholic beverages during pregnancy because of the risk of birth\ndefects. (2) Consumption of alcoholic beverages impairs your ability\nto drive a car or operate machinery, and may cause health problems.\nFICTIONAL SAMPLE LABEL - FOR PROTOTYPE TESTING ONLY\n"
+    }
+  ]
+}
